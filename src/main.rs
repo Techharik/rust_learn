@@ -21,6 +21,38 @@ fn main() {
     let _greeting = String::from("hello world");
 
     print!("x:{}", x);
-    let char = _greeting.chars().nth(0)
-    print!("{}", char);
+    let char = _greeting.chars().nth(0);
+    print!("{}", char.unwrap());
+
+    //    summary - numbers , bool , strings
+
+    //if else
+
+    if is_female {
+    } else if is_male {
+    } else {
+    }
+
+    //loops:
+    for i in 0..10 {
+        print!("{}", i)
+    }
+
+    // iterations //array , maps , strings
+    let sentance = "my name is hakirat";
+
+    for i in sentance.chars() {
+        print!("{}", i)
+    }
+
+    let result = mainer(2, 3);
+    print!("{}", result);
+
+    // Memory mangement in rusts:
+    // How mameory safe comared to c;
+    //
+}
+
+fn mainer(a: i32, b: i32) -> i32 {
+    return a + b;
 }
