@@ -62,9 +62,9 @@ fn main() {
 
     // mutable - values are changeable.
 
-    let mut m: i32 = 23;
-    m = 2; //everything is immutable 
-    println!("{}", m)
+    let mut _m: i32 = 23;
+    _m = 2; //everything is immutable 
+    println!("{}", _m);
     //    everything is imutable we need to say explicitly tell it is mutable.
     //    there can be race condition like if 2 thread try to update the same varible. immutable data is thread-safe
     //    it allows the compiler to make more optimized.
@@ -72,7 +72,27 @@ fn main() {
     // stack vs heap allocation
     // Stack neatly  organised vs Heap is clumsy unorganised.
     // some variable are fixed in size but some varibale are not fixed it increases in compile time space.
-    //
+    // example in str if change the str in runtime how to allocate the memory space
+    // heap helps in that cases its a unorganised data , we can put the those datatype in heaps
+    // in stack the refernce number is stored and heap the unorganied data will store which size is not fixed;
+
+    //stack - fixed size , number boolean , fixed size array
+    //heap  - unfixed size - vector , string;
+
+    // each function has its own stack frame like js all function data in callstack has a context in stack.
+
+    //? so in unfixed data stypes it store the value in the heap and the first index memory reference is stored in the  stack which point to the index of value , and length of the value , capacity how much more can i store in that places.
+
+    // if the capacity is not enough space than it goes to next avaiable space that y the heap is slow.
+
+    let _my_str = String::from("my name is hari prasath");
+
+    println!(
+        "{} {} {:p}",
+        _my_str.len(),
+        _my_str.capacity(),
+        _my_str.as_ptr()
+    )
 }
 
 fn mainer(a: i32, b: i32) -> i32 {
