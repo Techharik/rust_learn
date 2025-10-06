@@ -124,6 +124,63 @@ fn main() {
     // println!("{}", f);
 
     // structs. --- like object
+
+    struct User {
+        active: bool,
+        username: String,
+        email: String,
+        sign_in_count: u64,
+    }
+
+    let user1 = User {
+        active: true,
+        username: String::from("hari"),
+        email: String::from("hari@gmail.com"),
+        sign_in_count: 23423432,
+    };
+
+    println!("{:?}", user1.email);
+
+    //   implemeting structs: Class in javascript;
+    struct Rect {
+        width: u32,
+        height: u32,
+    }
+
+    impl Rect {
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+    }
+
+    let rect = Rect {
+        width: 32,
+        height: 43,
+    };
+    println!("{}", rect.area());
+
+    // enums - enumerating possible variants:
+    enum Direction {
+        North,
+        South,
+        East,
+        West,
+    }
+
+    let direction = Direction::North;
+    //pattern matching
+    let xx = calculate_area(direction);
+
+    println!("{}", xx);
+    fn calculate_area(direction: Direction) -> String {
+        let ans = match direction {
+            Direction::North => String::from("north"),
+            Direction::South => String::from("hi"),
+            Direction::West => String::from("HELLO"),
+            Direction::East => String::from("HELLO"),
+        };
+        return ans;
+    }
 }
 
 fn mainer(a: i32, b: i32) -> i32 {
@@ -134,6 +191,6 @@ fn mainer_string(a: String) -> String {
     return a;
 }
 
-fn string_update(a: &mut String) {
+fn _string_update(a: &mut String) {
     a.push_str("world");
 }
