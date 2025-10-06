@@ -17,8 +17,8 @@ fn main() {
 
     // strings - does not have fixed size , can change at a runtime.
 
-    let _str = "hello";
-    let _greeting = String::from("hello world");
+    let _str: &'static str = "hello";
+    let _greeting: String = String::from("hello world");
 
     print!("x:{}", x);
     let char = _greeting.chars().nth(0);
@@ -46,10 +46,32 @@ fn main() {
     }
 
     let result = mainer(2, 3);
-    print!("{}", result);
+    println!("{}", result);
 
     // Memory mangement in rusts:
     // How mameory safe comared to c;
+    // js , java - uses Garbage collections it do automatic collection , we dont access the memory mangement
+    // c++ manual memory mangement , allcoate and dealocate in c , you deal with ram memory
+    // when we do the manual memory collection we go in dangling issue lead to runtime issues.Learning curve is high.
+    // rust way . rust has its own ownership model for memory management.make it extremely safe but follow the rules.
+
+    // it achive with mutablity , heap and stacks , ownership , borrowing and reference , lifetimes.
+
+    // mutability?
+    // -- immutable varibale is cannot change those varibales once assigned. like const in js.
+
+    // mutable - values are changeable.
+
+    let mut m: i32 = 23;
+    m = 2; //everything is immutable 
+    println!("{}", m)
+    //    everything is imutable we need to say explicitly tell it is mutable.
+    //    there can be race condition like if 2 thread try to update the same varible. immutable data is thread-safe
+    //    it allows the compiler to make more optimized.
+
+    // stack vs heap allocation
+    // Stack neatly  organised vs Heap is clumsy unorganised.
+    // some variable are fixed in size but some varibale are not fixed it increases in compile time space.
     //
 }
 
