@@ -1,4 +1,4 @@
-use std::string;
+use std::{fs, string};
 
 fn main() {
     // simple variable in rusts.
@@ -181,6 +181,51 @@ fn main() {
         };
         return ans;
     }
+
+    // Error Handling in rust - complie time error and runtime  error --result enum;
+
+    // enum Result<T, E> {
+    //     OK(T),
+    //     Err(E),
+    // }
+
+    fn read_file() {
+        let res: Result<String, std::io::Error> = fs::read_to_string("./example.txt");
+
+        match res {
+            Ok(cont) => {
+                println!("{}", cont)
+            }
+
+            Err(err) => {
+                println!("Error {}", err)
+            }
+        }
+    }
+
+    read_file();
+
+    // option enum - get rid of null types in code bases
+    // pub enum Option<T>{
+    //     None,
+    //     Some(T)
+    // }
+
+    let s = String::from("Helloa");
+    let find_char = find_char_a(s);
+    match find_char {
+        Some(i) => println!("The index is {}", i),
+        None => println!("The value is not present"),
+    }
+}
+
+fn find_char_a(s: String) -> Option<usize> {
+    for (i, char) in s.chars().enumerate() {
+        if char == 'a' {
+            return Some(i);
+        };
+    }
+    return None;
 }
 
 fn mainer(a: i32, b: i32) -> i32 {
