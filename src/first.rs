@@ -60,7 +60,7 @@ fn main() {
     // it achive with mutablity , heap and stacks , ownership , borrowing and reference , lifetimes.
 
     // mutability?
-    // -- immutable varibale is cannot change those varibales once assigned. like const in js.
+    // -- immutable varoibale is cannot change those varibales nce assigned. like const in js.
 
     // mutable - values are changeable.
 

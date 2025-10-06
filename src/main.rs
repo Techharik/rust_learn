@@ -1,4 +1,5 @@
-use std::char;
+use core::num;
+use std::{char, fs};
 
 fn main() {
     println!("{}", "My rust revision here");
@@ -37,9 +38,27 @@ fn main() {
         }
     }
 
-    println!("{}", create_shape(shape))
+    println!("{}", create_shape(shape));
 
-    // result and optionals in enums
+    // result and optionals in enums for exceptional handling and null pointers:
+    match is_even(3) {
+        Some(value) => println!("{}", value + 10),
+        None => println!("{}", "There is no value present"),
+    }
+
+    let read_file = fs::read_to_string("./src/first.rs");
+
+    match read_file {
+        Ok(cont) => println!("Hello This is the contant in the files {}", cont),
+        Err(err) => println!("Error {}", err),
+    }
+}
+
+fn is_even(num: i32) -> Option<i32> {
+    if num % 2 == 0 {
+        return Some(num);
+    }
+    return None;
 }
 
 struct User {
