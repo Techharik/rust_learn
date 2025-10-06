@@ -1,3 +1,5 @@
+use std::string;
+
 fn main() {
     // simple variable in rusts.
     //numbers in rust i , u , f are memory footprints in rust ;
@@ -92,9 +94,46 @@ fn main() {
         _my_str.len(),
         _my_str.capacity(),
         _my_str.as_ptr()
-    )
+    );
+
+    // Ownership - all about the memory mangement . memeory safe risk less.Rules govern
+    // we need to follow the rules if we followed the rules the progrom complies if complies than our memory safe is done.after that the memory management is done there.
+    // when we pass the value by reference the old is died and and new owner is 2 people cannot point to the same reference.
+
+    let s1 = String::from("Hello");
+    let mut s2 = s1; //s1 loss the pointer control
+
+    // another way for move a values;
+    s2 = mainer_string(s2); // when we pass the 
+    println!("{}", s2);
+
+    // borrwowing and references:
+    // multiple people with same time but no other stuff , if you want to do some stuff then 1 single borrow.
+    // single owner
+    //multiple borrowser stille single owner
+    //single owner , one broower do something.
+
+    //    borrow:
+    let mut f = String::from("name");
+    let f1 = &mut f;
+    f1.push_str("he");
+
+    println!("{}", f1);
+    println!("{}", f);
+    // string_update(&mut f);
+    // println!("{}", f);
+
+    // structs. --- like object
 }
 
 fn mainer(a: i32, b: i32) -> i32 {
     return a + b;
+}
+
+fn mainer_string(a: String) -> String {
+    return a;
+}
+
+fn string_update(a: &mut String) {
+    a.push_str("world");
 }
