@@ -1,3 +1,5 @@
+use std::char;
+
 fn main() {
     println!("{}", "My rust revision here");
     // fibnocii seq algo in using rust;
@@ -7,10 +9,31 @@ fn main() {
     let str = String::from("Hello h");
     let length_str = str_len(&str);
 
-    println!("{}", str);
-    println!("{}", length_str);
-    println!("{}", fibseq);
-    println!("{}", fibser(3))
+    let user1 = User {
+        is_active: false,
+        username: String::from("Hari"),
+        sign_in_count: 34,
+    };
+
+    println!("{:?}", user1.greet());
+    // println!("{}", str);
+
+    // println!("{}", length_str);
+    // println!("{}", fibseq);
+    // println!("{}", fibser(3))
+}
+
+struct User {
+    is_active: bool,
+    username: String,
+    sign_in_count: u64,
+}
+
+impl User {
+    fn greet(&self) -> String {
+        let message = String::from("Hello ");
+        message + &self.username
+    }
 }
 
 // fib - serious;
