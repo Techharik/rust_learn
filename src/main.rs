@@ -15,12 +15,31 @@ fn main() {
         sign_in_count: 34,
     };
 
-    println!("{:?}", user1.greet());
+    println!("{}", user1.greet());
+    println!("{}", user1.username);
     // println!("{}", str);
 
     // println!("{}", length_str);
     // println!("{}", fibseq);
     // println!("{}", fibser(3))
+
+    //enums - fixed variants , exceptional handlings , null handlings;
+
+    enum Shape {
+        Cicle(f64),
+    }
+
+    let shape = Shape::Cicle(3.00);
+
+    fn create_shape(shape: Shape) -> f64 {
+        match shape {
+            Shape::Cicle(val) => val * 10.00,
+        }
+    }
+
+    println!("{}", create_shape(shape))
+
+    // result and optionals in enums
 }
 
 struct User {
@@ -33,6 +52,11 @@ impl User {
     fn greet(&self) -> String {
         let message = String::from("Hello ");
         message + &self.username
+    }
+
+    //static function kind of without the & self
+    fn Debug() -> u32 {
+        return 1;
     }
 }
 
