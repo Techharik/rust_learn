@@ -83,13 +83,50 @@ fn main() {
     let iter = v6.iter(); // borrowed the reference of the value
 
     let iter2 = iter.map(|x| x * 2); //with borrowed referenece create a new iter vec
-
+    println!("{:?}", iter2);
     for x in iter2 {
         //by looping we doo under the hood we use into.iter so the ownership is borrowed
         println!("{:?}", x)
     }
 
     // println!("{:?}", iter2) //we can use it here
+
+    //first filter the value from the vec and create a new vector and push the duble of the filter value odd number of the array;
+
+    let v7 = vec![1, 2, 3, 4, 4, 6, 7];
+
+    let iter = v7.iter().filter(|&x| x % 2 != 0);
+
+    let mut new_vect = Vec::new();
+
+    for value in iter {
+        new_vect.push(value * value);
+    }
+    println!("{:?}", new_vect);
+
+    // .collect()  used to collect the vector; above problem in chain in one line.
+
+    let new_iter_1: Vec<i32> = v7.iter().filter(|&x| x % 2 != 0).map(|x| x * x).collect();
+
+    println!("{:?}", new_iter_1);
+
+    let mut new_hash_map = HashMap::new();
+
+    new_hash_map.insert(1, 2);
+    new_hash_map.insert(2, 20);
+    new_hash_map.insert(3, 30);
+
+    println!("{:?}", new_hash_map);
+
+    // for (key, value) in new_hash_map {
+    //     print!("{} , {}", key, value)
+    // }
+
+    // let covert the hashmap into  a vector short cuts;
+
+    let vec: Vec<i32> = new_hash_map.iter().map(|(&x, &y)| x).collect();
+
+    println!("my keys {:?}", vec)
 }
 
 fn is_even(vec: &Vec<i32>) -> Vec<i32> {
