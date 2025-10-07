@@ -57,7 +57,39 @@ fn main() {
     for v in own {
         v * 1;
     }
-    print!("{:?}", own) //after the loop the iteraton becomes empty so  
+    // print!("{:?}", own) //after the loop the iteraton becomes empty so
+
+    let v4 = vec![1, 2, 3];
+
+    for value in v4 {
+        println!("{}", value);
+    }
+    // print!("v4{:?}", v4);  - it wont work because under the hood it uses into.iter()
+
+    // cunsuming adapters:
+    let v5 = vec![1, 2, 3, 4];
+
+    let v5_iter = v5.iter();
+
+    let total: i32 = v5_iter.sum();
+
+    println!("{:?}", v5);
+    println!("{:?}", total);
+    // println!("{:?}", v5_iter) //value is borrowed afer the sum
+
+    // Do a operation and return a  new array;
+    let v6 = vec![1, 2, 3, 4]; //initalize the vec
+
+    let iter = v6.iter(); // borrowed the reference of the value
+
+    let iter2 = iter.map(|x| x * 2); //with borrowed referenece create a new iter vec
+
+    for x in iter2 {
+        //by looping we doo under the hood we use into.iter so the ownership is borrowed
+        println!("{:?}", x)
+    }
+
+    // println!("{:?}", iter2) //we can use it here
 }
 
 fn is_even(vec: &Vec<i32>) -> Vec<i32> {
