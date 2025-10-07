@@ -1,3 +1,5 @@
+use std::fmt::format;
+
 fn main() {
     println!("----- String and slices and others ------ ");
     let str = String::from("Hello world ®️");
@@ -21,29 +23,32 @@ fn main() {
     // Traits : kind of interface in ts or class simply put:
     // like blue pring when struct impl the trait then the trait has to add the function
 
-    pub trait Summary {
-        //implement all the methods that we want here and the function impl it must have the things we can use the default for some defaul sending but can't access the self.property inside it some work around there.
-
-        fn summerize(&self) -> String;
-    }
-
-    struct User {
-        name: String,
-        age: i32,
-    }
-
-    impl Summary for User {
-        fn summerize(&self) -> String {
-            return format!("{}, {}", self.name, self.age);
-        }
-    };
-
     let user = User {
         name: String::from("Hari"),
         age: 22,
     };
 
-    println!("{}", user.summerize())
+    println!("{}", user.summerize());
+    // Trait as a paremeter; like we can pass the stuct inside  afunction how ever uses the trait
+
+    notify(user); // whicher function impl the summary traid can pass inside the notify functions;
+}
+
+pub trait Summary {
+    //implement all the methods that we want here and the function impl it must have the things we can use the default for some defaul sending but can't access the self.property inside it some work around there.
+
+    fn summerize(&self) -> String;
+}
+
+struct User {
+    name: String,
+    age: i32,
+}
+
+impl Summary for User {
+    fn summerize(&self) -> String {
+        return format!("{}, {}", self.name, self.age);
+    }
 }
 
 fn find_first(str: &String) -> &str {
@@ -57,4 +62,9 @@ fn find_first(str: &String) -> &str {
     }
 
     return &str[0..index];
+}
+
+pub fn notify(u: impl Summary) -> String {
+    println!("I am implementings here");
+    format!("{}", u.summerize())
 }
