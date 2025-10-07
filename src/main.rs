@@ -1,70 +1,33 @@
-use std::fmt::format;
+use std::thread;
 
 fn main() {
-    println!("----- String and slices and others ------ ");
-    let str = String::from("Hello world ®️");
-    let str_slice = &str[0..2];
+    println!("LifeTimes in Rusts");
+    let long_live;
 
-    let find_first_word = find_first(&str);
+    let str1 = String::from("small");
 
-    println!("{}", find_first_word); // find the first word as reference in the owner string
-    println!("{}", str); // owner
-    println!("{}", str_slice); // reference of the sliced owner;
+    let str2 = String::from("longest");
 
-    //Generic Videos:
+    long_live = longer_fun(&str1, &str2);
 
-    fn generic_fun<T: std::cmp::PartialOrd>(a: T, b: T) -> T {
-        if a > b {
-            return a;
-        }
-        return b;
+    //   multi theadring:
+    let v = vec![1, 2, 3, 32, 43, 43, 54, 534];
+    let ans = thread::spawn(move || {
+        println!("Inside thread!");
+        let new_vec: Vec<i32> = v.iter().map(|&x| x * 2).collect();
+        new_vec
+    });
+    println!("{}", long_live);
+
+    // Wait for the thread to finish and get the result
+    let new_vec = ans.join().unwrap();
+    println!("Thread result: {:?}", new_vec);
+}
+
+fn longer_fun<'a>(str1: &'a String, str2: &'a String) -> &'a String {
+    if str1.len() > str2.len() {
+        return str1;
+    } else {
+        return str2;
     }
-
-    // Traits : kind of interface in ts or class simply put:
-    // like blue pring when struct impl the trait then the trait has to add the function
-
-    let user = User {
-        name: String::from("Hari"),
-        age: 22,
-    };
-
-    println!("{}", user.summerize());
-    // Trait as a paremeter; like we can pass the stuct inside  afunction how ever uses the trait
-
-    notify(user); // whicher function impl the summary traid can pass inside the notify functions;
-}
-
-pub trait Summary {
-    //implement all the methods that we want here and the function impl it must have the things we can use the default for some defaul sending but can't access the self.property inside it some work around there.
-
-    fn summerize(&self) -> String;
-}
-
-struct User {
-    name: String,
-    age: i32,
-}
-
-impl Summary for User {
-    fn summerize(&self) -> String {
-        return format!("{}, {}", self.name, self.age);
-    }
-}
-
-fn find_first(str: &String) -> &str {
-    let mut index = 0;
-
-    for i in str.chars() {
-        if i == ' ' {
-            break;
-        }
-        index = index + 1;
-    }
-
-    return &str[0..index];
-}
-
-pub fn notify(u: impl Summary) -> String {
-    println!("I am implementings here");
-    format!("{}", u.summerize())
 }
