@@ -4,7 +4,7 @@ fn main() {
     println!("Advance Rust");
     // collections unFixed sizes;
 
-    // vector a dynamic homogenous array; unfixed size with same typed values collections
+    // vector a dynamic homogenous array; unfixed size with same typed values collections;
 
     let mut vec = Vec::new();
     vec.push(1);
@@ -64,7 +64,7 @@ fn main() {
     for value in v4 {
         println!("{}", value);
     }
-    // print!("v4{:?}", v4);  - it wont work because under the hood it uses into.iter()
+    // print!("v4{:?}", v4);  - it wont work because under the hood to.iter()
 
     // cunsuming adapters:
     let v5 = vec![1, 2, 3, 4];

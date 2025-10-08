@@ -1,5 +1,8 @@
-fn main() {
-    println!("Macros and other things");
+use crate::utils::math::add;
 
-    println!("-------");
+mod utils;
+fn main() {
+    println!("Packages and modules");
+    println!("");
+    add();
 }
